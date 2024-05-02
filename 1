@@ -1,0 +1,31 @@
+import pandas as pd
+import numpy as np
+
+#read Dataset using 
+data=pd.read_csv("C:\\Users\\ADMIN\\Downloads\\Titanic survival dataset.csv")
+
+data
+data.describe()
+data.info()
+data.isnull().sum()
+
+data['Age'].fillna(data['Age'].mean(), inplace=True)
+
+data['Cabin'].fillna("Not Find", inplace=True)
+
+data['Fare'].fillna(data['Fare'].mean(), inplace=True)
+
+data.isnull().sum()
+
+data
+data[data.columns[6]]=data[data.columns[6]].astype(bool)
+
+datadata['Pclass'].replace([1,2,3],['A','B','C'], inplace=True)
+
+data
+data.info()
+data[data.columns[5]]=data[data.columns[5]].astype(int)
+data
+
+data['Embarked'].replace(['Q','S','C'], [1,2,3], inplace=True)
+data
