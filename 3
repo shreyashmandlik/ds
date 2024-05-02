@@ -1,0 +1,38 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+
+df = pd.read_csv('employee_data.csv')
+df.head()
+
+df.shape
+df.info()
+
+df.isnull().sum()
+
+df.describe()
+
+grouped_df = df.groupby('groups')['salary'].agg(['mean','median','max','min','std','var','mad'])
+grouped_df
+
+from seaborn import load_dataset
+
+iris = load_dataset('iris')
+
+iris.head()
+
+iris.groupby('species').describe()
+
+iris['species'].unique()
+
+setosa = iris[iris['species']=='setosa']
+versicolor = iris[iris['species']=='versicolor']
+virginica = iris[iris['species']=='virginica']
+
+setosa.describe()
+
+versicolor.describe()
+
+virginica.describe()
