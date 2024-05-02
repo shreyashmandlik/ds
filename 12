@@ -1,0 +1,26 @@
+ check java
+ java-version
+
+ if no java :-
+sudo apt-get update
+sudo apt-get install
+sudo apt-get install default-jdk
+
+ when java is installed :-
+sudo apt-get install scala
+scala-version
+
+then open text editor:-
+type the code
+save it as hello.scala
+open terminal
+(compile it by typing) scalac HelloWorld.scala
+(test it by running the code) scala HelloWorld
+
+object Hello {
+    def main(args: Array[String]) = {
+        println("Hello, world")
+    }
+}
+
+scalac Hello
