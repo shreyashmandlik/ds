@@ -1,1 +1,79 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.stats import boxcox, skew, norm
+import seaborn as sns
+
+np.random.seed(42)
+
+acdata = {
+    'Student_ID': range(1, 101),
+    'Name': [f'Student_{i}' for i in range(1, 101)],
+    'Age': np.random.randint(18, 25, size=100),
+    'Gender': np.random.choice(['Male', 'Female'], size=100),
+    'ANN_Score': np.random.randint(50, 100, size=100),
+    'DS_Score': np.random.randint(40, 95, size=100),
+    'Attendance': np.random.choice([0, 1], size=100)
+}
+
+df=pd.DataFrame(acdata)
+
+df
+
+df.loc[df['Age'] > 22, 'DS_Score'] = np.nan
+
+df
+
+df.describe()
+
+df.info()
+
+df.shape
+
+df.isnull().sum()
+
+df['DS_Score'].fillna(df['DS_Score'].median(), inplace=True)
+
+df.isnull().sum()
+
+df
+
+df.at[95, 'DS_Score']=10
+df.at[4, 'DS_Score']=12
+df.at[99, 'DS_Score']=200
+
+df.boxplot(column=['ANN_Score', 'DS_Score'])
+
+ndf=df[df['DS_Score']>40]
+ndf
+
+ndf.boxplot(column=['DS_Score'])
+plt.show()
+
+max_val = ndf['DS_Score'].max()
+newdf=ndf[ndf['DS_Score'] < max_val]
+
+newdf.boxplot(column=['DS_Score'])
+
+newdf.plot.scatter(x='Attendance', y='DS_Score')
+plt.show()
+
+from scipy.stats import skew
+total_data = skew(newdf["DS_Score"])
+transformed_data = np.sqrt(newdf["DS_Score"])
+transformed_skewness = skew(transformed_data)
+print("Original Skewness:", original_skewness)
+print("Transformed Skewness:", transformed_skewness)
+
+plt.figure(figsize=(20, 6))
+plt.subplot(1, 2, 1)
+sns.histplot(newdf["DS_Score"], kde=True , color= 'red')
+
+
+
+plt.subplot(1, 2, 2)
+sns.histplot(transformed_data, kde=True)
+plt.title(f'Transformed Distribution (Skewness: {transformed_skewness:.2f})')
+plt.show()
+
 
