@@ -37,6 +37,8 @@ plt.figure(figsize=(10,7))
 sns.heatmap(data=ads1.corr(),annot=True,center=True,cbar=True)
 plt.plot()
 
+ads.info()
+
 X = ads.iloc[:,[2,3]].values
 y = ads.iloc[:,4].values
 
