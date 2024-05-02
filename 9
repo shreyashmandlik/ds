@@ -1,0 +1,18 @@
+import seaborn as sns
+titanic = sns.load_dataset("titanic")
+
+titanic
+
+titanic.head(10)
+
+titanic.info()
+
+titanic.describe()
+
+titanic.loc[:,["survived","alive"]]
+
+#Now Plot boxplot
+sns.boxplot(x="sex",y="age",data=titanic)
+
+sns.boxplot(x="sex",y="age",data=titanic,hue="survived")
+
