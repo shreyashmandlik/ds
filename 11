@@ -1,0 +1,14 @@
+docker run -d --name kudu-impala -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:2502
+0 apache/kudu:impala-latest impala
+
+docker exec -it kudu-impala impala-shell
+
+create database db;
+
+use db;
+
+create table emp(id int, name varchar, salary int);
+
+insert into emp values(1,'shreyash',1000),(2,'prathmesh',1500),(3,'kunal',2000);
+
+select*from emp;
